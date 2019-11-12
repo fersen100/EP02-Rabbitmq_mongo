@@ -28,3 +28,16 @@ executar o comando: python3 consumer_volume.py
 executar o comando: python3 producer.py                                                        
 selecionar a opção que deseja realizar (1=insert,2=delete,3=update)                              
 passar as informações solicitadas
+
+
+## Consultar Informações
+Foram criadas 3 collections no mongo para esse EP.
+
+Eventos:
+contem informações do eventos ocorridos
+
+Usuarios
+guarda todos os usuarios.
+
+Volume
+Contem o contador dos usuarios criados
