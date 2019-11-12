@@ -1,0 +1,28 @@
+version: '3'
+
+services:
+
+  rabbitmq1:
+    image: rabbitmq:3-management
+    hostname: rabbitmq1
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    network_mode: "bridge"
+    environment:
+      - RABBITMQ_ERLANG_COOKIE=${RABBITMQ_ERLANG_COOKIE}
+      - RABBITMQ_DEFAULT_USER=${RABBITMQ_DEFAULT_USER}
+      - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
+      - RABBITMQ_DEFAULT_VHOST=${RABBITMQ_DEFAULT_VHOST}
+
+  consumer_user:
+    build: .
+    environment: 
+      AMQP_URL: 'amqp://rabbitmq?connection_attempts=5&retry_delay=5'
+
+  db:
+    image: mongo
+    ports:
+      - 27017:27017
+    volumes:
+      - "$PWD/mongo:/data/db"
